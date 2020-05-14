@@ -7,6 +7,7 @@ import { TouchesoperationsComponent } from './touchesoperations/touchesoperation
 import { LignesdetouchesComponent } from './lignesdetouches/lignesdetouches.component';
 import { CalculetteComponent } from './calculette/calculette.component';
 import { CalculetteplateComponent } from './calculetteplate/calculetteplate.component';
+import { HistoriquecalcComponent } from './historiquecalc/historiquecalc.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { CalculetteplateComponent } from './calculetteplate/calculetteplate.comp
     TouchesoperationsComponent,
     LignesdetouchesComponent,
     CalculetteComponent,
-    CalculetteplateComponent
+    CalculetteplateComponent,
+    HistoriquecalcComponent
   ],
   imports: [
     BrowserModule

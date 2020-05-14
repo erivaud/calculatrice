@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import Calcul from '../historiquecalc/calcul.model';
 
 @Component({
   selector: 'app-calculetteplate',
@@ -6,53 +7,36 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./calculetteplate.component.css']
 })
 export class CalculetteplateComponent implements OnInit {
-  calculAffichage = '';
-
-  nombre1 = '0';
-  nombre2 = '0';
-  operande: string;
-
-  operandeSaisie = false;
+  calculAffichage = '0';
+  histoCalculs: Array<Calcul> = [];
 
   constructor() { }
 
   ngOnInit(): void {
   }
 
-  pressButton($event, touche: string) {
-
-    if (touche === '+' || touche === '-' || touche === '*' || touche === '/') {
-      this.operandeSaisie = true;
-      this.operande = touche;
+  pressButton($event, touche) {
+    if (this.calculAffichage === '0' || this.calculAffichage === 'Err') {
+      this.calculAffichage = '' + touche;
+    } else {
+      this.calculAffichage += '' + touche;
     }
-    else {
-      if (!this.operandeSaisie) {
-        this.nombre1 += touche;
-      }
-      else if (this.operandeSaisie) {
-        this.nombre2 += touche;
-      }
-      this.calculAffichage += touche;
-      console.log('Touche : ' + touche);
-      console.log('num1 : ' + touche);
-      console.log('num2 : ' + touche);
-      console.log('operande : ' + touche);
-      console.log('ligne : ' + this.calculAffichage);
-    }
-
-
-
   }
-
 
   clearAffichage() {
     this.calculAffichage = '';
     console.log('cleared');
   }
 
-  afficherResultat($event, calculAffichage) {
-    console.log(calculAffichage);
-    console.log('tu calcules');
+  afficherResultat() {
+    try {
+      const result = '' + eval(this.calculAffichage);
+      this.histoCalculs.push(new Calcul(this.calculAffichage, result));
+      this.calculAffichage = result;
+    } catch (e) {
+      this.calculAffichage = 'Err';
+      console.log(e);
+    }
   }
 
 }
