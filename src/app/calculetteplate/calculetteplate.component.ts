@@ -39,4 +39,11 @@ export class CalculetteplateComponent implements OnInit {
     }
   }
 
+  delHisto(event){
+    const indice = this.histoCalculs.indexOf(event[1]);
+    if (indice !== -1) {
+      this.histoCalculs.splice(indice, 1);
+    }
+  }
+
 }

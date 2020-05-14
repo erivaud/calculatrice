@@ -1,27 +1,27 @@
 <div class="container">
     <div class="row">
-      <div class="col-10 col-md-6 col-gl-4 card p-4 ml-5">
+      <div class="col-10 col-md-6 col-lg-6 card p-4 ml-5">
         <h1>Calculatrice</h1>
-        <div class="form-control"> {{ calculAffichage }} </div>      
-        <div class="row">
+        <div class="form-control mb-4"> {{ calculAffichage }} </div>      
+        <div class="row mb-4 ml-3">
             <div class="col-3" (click)="pressButton($event, 7)">7</div>
             <div class="col-3" (click)="pressButton($event, 8)">8</div>
             <div class="col-3" (click)="pressButton($event, 9)">9</div>
             <div class="col-3" (click)="pressButton($event, '+')">+</div>
         </div>
-        <div class="row">
+        <div class="row  mb-4 ml-3">
             <div class="col-3" (click)="pressButton($event, 4)">4</div>
             <div class="col-3" (click)="pressButton($event, 5)">5</div>
             <div class="col-3" (click)="pressButton($event, 6)">6</div>
             <div class="col-3" (click)="pressButton($event, '-')">-</div>
         </div>
-        <div class="row">
+        <div class="row  mb-4 ml-3">
             <div class="col-3" (click)="pressButton($event, 1)">1</div>
             <div class="col-3" (click)="pressButton($event, 2)">2</div>
             <div class="col-3" (click)="pressButton($event, 3)">3</div>
             <div class="col-3" (click)="pressButton($event, '*')">*</div>
         </div>
-        <div class="row">
+        <div class="row  mb-4 ml-3">
             <div class="col-3" (click)="pressButton($event, 0)">0</div>
             <div class="col-3" (click)="afficherResultat()">=</div>
             <div class="col-3" (click)="clearAffichage()">Clear</div>
@@ -30,9 +30,11 @@
       </div>
     </div>
 
-    <div class="row">
-      <div class="col-10 col-md-6 col-gl-4 card p-4 ml-5">
-        <app-historiquecalc [calculInput]="histoCalc" *ngFor="let histoCalc of histoCalculs"></app-historiquecalc>
+    <div class="row" *ngIf="histoCalculs.length > 0">
+      <div class="col-10 col-md-6 col-lg-6 card p-4 ml-5">
+        <h4 class="display-5">Historique de vos calculs</h4>
+        <app-historiquecalc (delAction)="delHisto($event)"
+        [calculInput]="histoCalc" *ngFor="let histoCalc of histoCalculs"></app-historiquecalc>
       </div>
     </div>
   </div>
